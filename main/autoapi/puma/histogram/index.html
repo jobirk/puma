@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>puma.histogram &#8212; puma 0.1.5dev documentation</title>
+    <title>puma.histogram &#8212; puma 0.1.7dev documentation</title>
 <script>
   document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
   document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
@@ -62,7 +62,7 @@
   
   
   
-    <p class="title logo__title">puma 0.1.5dev documentation</p>
+    <p class="title logo__title">puma 0.1.7dev documentation</p>
   
 </a>
     
@@ -474,7 +474,7 @@ function checkPageExistsAndRedirect(event) {
 </table>
 <dl class="py class">
 <dt class="sig sig-object py" id="puma.histogram.Histogram">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">puma.histogram.</span></span><span class="sig-name descname"><span class="pre">Histogram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ratio_group</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flavour</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_flavour_label</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">histtype</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'step'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puma.histogram.Histogram" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">puma.histogram.</span></span><span class="sig-name descname"><span class="pre">Histogram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ratio_group</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flavour</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_flavour_label</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">histtype</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'step'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puma.histogram.Histogram" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../plot_base/index.html#puma.plot_base.PlotLineObject" title="puma.plot_base.PlotLineObject"><code class="xref py py-obj docutils literal notranslate"><span class="pre">puma.plot_base.PlotLineObject</span></code></a></p>
 <p>Histogram class storing info about histogram and allows to calculate ratio w.r.t
 other histograms.</p>
@@ -483,6 +483,10 @@ other histograms.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>values</strong> (<em>np.ndarray</em>) – Input data for the histogram</p></li>
+<li><p><strong>weights</strong> (<em>np.ndarray</em><em>, </em><em>optional</em>) – Weights for the input data. Has to be an array of same length as the input
+data with a weight for each entry. If not specified, weight 1 will be given
+to each entry. The uncertainties are calculated as the square root of the
+squared weights (for each bin separately). By default None.</p></li>
 <li><p><strong>ratio_group</strong> (<em>str</em><em>, </em><em>optional</em>) – Name of the ratio group this histogram is compared with. The ratio group
 allows you to compare different groups of histograms within one plot.
 By default None</p></li>
@@ -500,12 +504,15 @@ By default “step”</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises</dt>
-<dd class="field-even"><p><strong>ValueError</strong> – If input data is not of type np.ndarray or list</p>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>ValueError</strong> – If input data is not of type np.ndarray or list</p></li>
+<li><p><strong>ValueError</strong> – If weights are specified but have different length as the input values</p></li>
+</ul>
 </dd>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="puma.histogram.Histogram.divide">
-<span class="sig-name descname"><span class="pre">divide</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puma.histogram.Histogram.divide" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">divide</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puma.histogram.Histogram.divide" title="Permalink to this definition">#</a></dt>
 <dd><p>Calculate ratio between two class objects.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -565,7 +572,7 @@ sum(bin_counts * bin_width). By default True.</p></li>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="puma.histogram.HistogramPlot.add">
-<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">histogram</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puma.histogram.HistogramPlot.add" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">histogram</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puma.histogram.HistogramPlot.add" title="Permalink to this definition">#</a></dt>
 <dd><p>Adding histogram object to figure.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -584,7 +591,7 @@ False</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="puma.histogram.HistogramPlot.set_reference">
-<span class="sig-name descname"><span class="pre">set_reference</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puma.histogram.HistogramPlot.set_reference" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">set_reference</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puma.histogram.HistogramPlot.set_reference" title="Permalink to this definition">#</a></dt>
 <dd><p>Setting the reference histogram curves used in the ratios</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -595,7 +602,7 @@ False</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="puma.histogram.HistogramPlot.plot">
-<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puma.histogram.HistogramPlot.plot" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puma.histogram.HistogramPlot.plot" title="Permalink to this definition">#</a></dt>
 <dd><p>Plotting curves. This also generates the bins of the histograms that are
 added to the plot. Plot objects are drawn in the same order as they were added
 to the plot.</p>
@@ -617,7 +624,7 @@ to the plot.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="puma.histogram.HistogramPlot.get_discrete_values">
-<span class="sig-name descname"><span class="pre">get_discrete_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elem</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">object</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puma.histogram.HistogramPlot.get_discrete_values" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">get_discrete_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elem</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">object</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puma.histogram.HistogramPlot.get_discrete_values" title="Permalink to this definition">#</a></dt>
 <dd><p>Get discrete values of a variable and adjust the
 bins accordingly</p>
 <dl class="field-list simple">
@@ -643,7 +650,7 @@ distinguished</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="puma.histogram.HistogramPlot.get_reference_histo">
-<span class="sig-name descname"><span class="pre">get_reference_histo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">histo</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puma.histogram.HistogramPlot.get_reference_histo" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">get_reference_histo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">histo</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puma.histogram.HistogramPlot.get_reference_histo" title="Permalink to this definition">#</a></dt>
 <dd><p>Get reference histogram from list of references</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -663,7 +670,7 @@ distinguished</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="puma.histogram.HistogramPlot.plot_ratios">
-<span class="sig-name descname"><span class="pre">plot_ratios</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puma.histogram.HistogramPlot.plot_ratios" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">plot_ratios</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#puma.histogram.HistogramPlot.plot_ratios" title="Permalink to this definition">#</a></dt>
 <dd><p>Plotting ratio histograms.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises</dt>
@@ -674,7 +681,7 @@ distinguished</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="puma.histogram.HistogramPlot.add_bin_width_to_ylabel">
-<span class="sig-name descname"><span class="pre">add_bin_width_to_ylabel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puma.histogram.HistogramPlot.add_bin_width_to_ylabel" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">add_bin_width_to_ylabel</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#puma.histogram.HistogramPlot.add_bin_width_to_ylabel" title="Permalink to this definition">#</a></dt>
 <dd><p>Adds the bin width to the ylabel of a histogram plot. If the bin with is
 smaller than 0.01, scientific notation will be used.</p>
 <dl class="field-list simple">
@@ -686,7 +693,7 @@ smaller than 0.01, scientific notation will be used.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="puma.histogram.HistogramPlot.draw">
-<span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labelpad</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puma.histogram.HistogramPlot.draw" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">labelpad</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puma.histogram.HistogramPlot.draw" title="Permalink to this definition">#</a></dt>
 <dd><p>Draw figure.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
