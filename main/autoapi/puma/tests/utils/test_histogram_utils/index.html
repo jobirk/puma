@@ -62,7 +62,7 @@
   
   
   
-    <p class="title logo__title">puma 0.1.8 documentation</p>
+    <p class="title logo__title">puma documentation</p>
   
 </a>
     
@@ -97,6 +97,12 @@
 </li>
 
 <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../../changelog.html">
+  Changelog
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
  <a class="reference internal nav-link" href="../../../../index.html">
   API Reference
  </a>
@@ -121,7 +127,7 @@
       <div class="navbar-end-item">
         <div class="dropdown" id="version_switcher">
     <button type="button" class="btn btn-sm navbar-btn dropdown-toggle" id="version_switcher_button" data-toggle="dropdown">
-        v0.1.8  <!-- this text may get changed later by javascript -->
+        main  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div id="version_switcher_menu" class="dropdown-menu list-group-flush py-0" aria-labelledby="version_switcher_button">
@@ -131,7 +137,7 @@
 
 <!-- NOTE: this JS must live here (not in our global JS file) because it relies
      on being processed by Jinja before it is run (specifically for replacing
-     variables autoapi/puma/tests/utils/test_histogram_utils/index and {'json_url': 'https://umami-hep.github.io/puma/main/_static/switcher.json', 'version_match': 'v0.1.8'}.
+     variables autoapi/puma/tests/utils/test_histogram_utils/index and {'json_url': 'https://umami-hep.github.io/puma/main/_static/switcher.json', 'version_match': 'main'}.
 -->
 
 <script type="text/javascript">
@@ -189,7 +195,7 @@ function checkPageExistsAndRedirect(event) {
             // this version, rather than using sphinx's  variable.
             // also highlight the dropdown entry for the currently-viewed
             // version's entry
-            if (entry.version == "v0.1.8") {
+            if (entry.version == "main") {
                 node.classList.add("active");
                 btn.innerText = btn.dataset["activeVersionName"] = entry.name;
                 btn.dataset["activeVersion"] = entry.version;
@@ -270,6 +276,11 @@ function checkPageExistsAndRedirect(event) {
         </a>
        </li>
        <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#puma.tests.utils.test_histogram_utils.hist_w_unc_TestCase.test_under_overflow_values">
+         test_under_overflow_values
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
         <a class="reference internal nav-link" href="#puma.tests.utils.test_histogram_utils.hist_w_unc_TestCase.test_hist_w_unc_zero_case">
          test_hist_w_unc_zero_case
         </a>
@@ -307,6 +318,16 @@ function checkPageExistsAndRedirect(event) {
        <li class="toc-h5 nav-item toc-entry">
         <a class="reference internal nav-link" href="#puma.tests.utils.test_histogram_utils.hist_w_unc_TestCase.test_negative_weights">
          test_negative_weights
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#puma.tests.utils.test_histogram_utils.hist_w_unc_TestCase.test_inf_treatment">
+         test_inf_treatment
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#puma.tests.utils.test_histogram_utils.hist_w_unc_TestCase.test_nan_check">
+         test_nan_check
         </a>
        </li>
       </ul>
@@ -471,6 +492,12 @@ not have a method with the specified name.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="puma.tests.utils.test_histogram_utils.hist_w_unc_TestCase.test_under_overflow_values">
+<span class="sig-name descname"><span class="pre">test_under_overflow_values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#puma.tests.utils.test_histogram_utils.hist_w_unc_TestCase.test_under_overflow_values" title="Permalink to this definition">#</a></dt>
+<dd><p>Test behaviour for under- and overflow values</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="puma.tests.utils.test_histogram_utils.hist_w_unc_TestCase.test_hist_w_unc_zero_case">
 <span class="sig-name descname"><span class="pre">test_hist_w_unc_zero_case</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#puma.tests.utils.test_histogram_utils.hist_w_unc_TestCase.test_hist_w_unc_zero_case" title="Permalink to this definition">#</a></dt>
 <dd><p>Test what happens if empty array is provided as input.</p>
@@ -516,6 +543,18 @@ not have a method with the specified name.</p>
 <dt class="sig sig-object py" id="puma.tests.utils.test_histogram_utils.hist_w_unc_TestCase.test_negative_weights">
 <span class="sig-name descname"><span class="pre">test_negative_weights</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#puma.tests.utils.test_histogram_utils.hist_w_unc_TestCase.test_negative_weights" title="Permalink to this definition">#</a></dt>
 <dd><p>Test if negative weights are properly handled.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="puma.tests.utils.test_histogram_utils.hist_w_unc_TestCase.test_inf_treatment">
+<span class="sig-name descname"><span class="pre">test_inf_treatment</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#puma.tests.utils.test_histogram_utils.hist_w_unc_TestCase.test_inf_treatment" title="Permalink to this definition">#</a></dt>
+<dd><p>Test if infinity values are treated as expected.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="puma.tests.utils.test_histogram_utils.hist_w_unc_TestCase.test_nan_check">
+<span class="sig-name descname"><span class="pre">test_nan_check</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#puma.tests.utils.test_histogram_utils.hist_w_unc_TestCase.test_nan_check" title="Permalink to this definition">#</a></dt>
+<dd><p>Test if the warning with number of nan values is raised in hist_w_unc</p>
 </dd></dl>
 
 </dd></dl>
